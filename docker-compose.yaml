@@ -16,18 +16,6 @@ services:
       retries: 5
     networks:
       - base_network
-  
-  web:
-    build: .
-    env_file: .env
-    ports:
-      - "8000:8000"
-    command: uvicorn src.main:app --reload
-    networks:
-      - base_network
-    depends_on:
-      postgres:
-        condition: service_healthy
 
 networks:
   base_network:
