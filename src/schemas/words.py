@@ -1,9 +1,7 @@
 from typing import Optional
-
-from starlette import status
 from pydantic import BaseModel
 
-from src.schemas.enums import Language, WordDifficulty
+from src.schemas.enums import Language, WordDifficulty, PartOfSpeech
 
 
 class BaseWordModel(BaseModel):
@@ -17,6 +15,10 @@ class GetWordModel(BaseModel):
     language: Language
     description: Optional[str] = None
     difficulty: WordDifficulty
+    part_of_speech: PartOfSpeech
+
+    class Config:
+        from_attributes = True
 
 
 class PostReqWordModel(BaseWordModel):
@@ -25,16 +27,27 @@ class PostReqWordModel(BaseWordModel):
     language: Language
     description: Optional[str] = None
     difficulty: WordDifficulty
+    part_of_speech: PartOfSpeech
+
+    class Config:
+        from_attributes = True
 
 
 class PostRespWordModel(BaseModel):
     status: int
     id: int
 
+    class Config:
+        from_attributes = True
+
 
 class PatchWordModel(BaseWordModel):
     word: Optional[str] = None
     translation: Optional[str] = None
-    language: Language = Language.FRENCH
+    language: Optional[Language] = None
     description: Optional[str] = None
-    difficulty: WordDifficulty = WordDifficulty.EASY
+    difficulty: Optional[WordDifficulty] = None
+    part_of_speech: Optional[PartOfSpeech] = None
+
+    class Config:
+        from_attributes = True

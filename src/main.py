@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-from .database.database import create_tables
+from .database.database import create_tables, drop_tables
 from .routers.words import router as word_router
 
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):
+    # await drop_tables()
     await create_tables()
     print("База готова к работе")
     yield
