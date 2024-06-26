@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel
 
-from src.schemas.enums import Language, WordDifficulty, PartOfSpeech
+from src.schemas.enums import Language, WordDifficulty, PartOfSpeech, WordGender
 
 
 class BaseWordModel(BaseModel):
@@ -16,6 +16,7 @@ class GetWordModel(BaseModel):
     description: Optional[str] = None
     difficulty: WordDifficulty
     part_of_speech: PartOfSpeech
+    word_gender: WordGender
 
     class Config:
         from_attributes = True
@@ -28,6 +29,7 @@ class PostReqWordModel(BaseWordModel):
     description: Optional[str] = None
     difficulty: WordDifficulty
     part_of_speech: PartOfSpeech
+    word_gender: WordGender
 
     class Config:
         from_attributes = True
@@ -48,6 +50,7 @@ class PatchWordModel(BaseWordModel):
     description: Optional[str] = None
     difficulty: Optional[WordDifficulty] = None
     part_of_speech: Optional[PartOfSpeech] = None
+    word_gender: Optional[WordGender] = None
 
     class Config:
         from_attributes = True

@@ -2,7 +2,7 @@ from typing import Optional
 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from src.schemas.enums import Language, WordDifficulty, PartOfSpeech
+from src.schemas.enums import Language, WordDifficulty, PartOfSpeech, WordGender
 
 
 class Model(DeclarativeBase):
@@ -19,3 +19,4 @@ class WordORM(Model):
     description: Mapped[Optional[str]]
     difficulty: Mapped[WordDifficulty]
     part_of_speech: Mapped[PartOfSpeech]
+    word_gender: Mapped[WordGender]
